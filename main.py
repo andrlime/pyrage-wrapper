@@ -65,7 +65,7 @@ def do_encrypt(args: argparse.Namespace) -> None:
     with open(args.message, "rb") as f:
         plaintext = f.read()
 
-    ciphertext: bytes = pyrage.encrypt(plaintext, recipients, armored=args.armor)
+    ciphertext: bytes = pyrage.encrypt(plaintext, recipients, armored=False)
     encoded: bytes = base64.b64encode(ciphertext)
 
     output: str = args.output or (args.message + ".b64")
@@ -107,7 +107,6 @@ def main() -> None:
     enc.add_argument("--keyfile", required=True, help="File with one SSH or age public key per line")
     enc.add_argument("--message", required=True, help="File containing the plaintext message")
     enc.add_argument("-o", "--output", help="Output file (default: <message>.b64)")
-    enc.add_argument("--armor", action="store_true", help="Write ASCII-armored output")
     enc.set_defaults(func=do_encrypt)
 
     dec = subparsers.add_parser("decrypt", help="Decrypt a message with one or more identities")
