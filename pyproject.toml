@@ -1,0 +1,9 @@
+[project]
+name = "encrypt-decrypt"
+version = "0.1.0"
+description = "Pyrage wrapper"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "pyrage>=1.4.0",
+]
